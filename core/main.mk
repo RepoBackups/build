@@ -148,17 +148,10 @@ javac_version_str := $(shell unset _JAVA_OPTIONS JAVA_TOOL_OPTIONS && javac -ver
 
 # Check for the correct version of java, should be 1.7 by
 # default, and 1.6 if LEGACY_USE_JAVA6 is set.
-ifeq ($(LEGACY_USE_JAVA6),)
-required_version := "1.7.x"
-required_javac_version := "1.7"
-java_version := $(shell echo '$(java_version_str)' | grep '^java .*[ "]1\.7[\. "$$]')
-javac_version := $(shell echo '$(javac_version_str)' | grep '[ "]1\.7[\. "$$]')
-else # if LEGACY_USE_JAVA6
-required_version := "1.6.x"
-required_javac_version := "1.6"
-java_version := $(shell echo '$(java_version_str)' | grep '^java .*[ "]1\.6[\. "$$]')
-javac_version := $(shell echo '$(javac_version_str)' | grep '[ "]1\.6[\. "$$]')
-endif # if LEGACY_USE_JAVA6
+required_version := "1.8.x"
+required_javac_version := "1.8"
+java_version := $(shell echo '$(java_version_str)' | grep '^java .*[ "]1\.8[\. "$$]')
+javac_version := $(shell echo '$(javac_version_str)' | grep '[ "]1\.8[\. "$$]')
 
 ifeq ($(strip $(java_version)),)
 $(info ************************************************************)
@@ -175,16 +168,7 @@ $(error stop)
 endif
 
 # Check for the current JDK.
-#
-# For Java 1.7, we require OpenJDK on linux and Oracle JDK on Mac OS.
-# For Java 1.6, we require Oracle for all host OSes.
 requires_openjdk := false
-ifeq ($(LEGACY_USE_JAVA6),)
-ifeq ($(HOST_OS), linux)
-requires_openjdk := true
-endif
-endif
-
 
 # Check for the current jdk
 ifeq ($(requires_openjdk), true)
