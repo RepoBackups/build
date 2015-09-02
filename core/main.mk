@@ -148,10 +148,10 @@ javac_version_str := $(shell unset _JAVA_OPTIONS JAVA_TOOL_OPTIONS && javac -ver
 
 # Check for the correct version of java, should be 1.7 by
 # default, and 1.6 if LEGACY_USE_JAVA6 is set.
-required_version := "1.8.x"
-required_javac_version := "1.8"
-java_version := $(shell echo '$(java_version_str)' | grep '^java .*[ "]1\.8[\. "$$]')
-javac_version := $(shell echo '$(javac_version_str)' | grep '[ "]1\.8[\. "$$]')
+required_version := "1.7.x"
+required_javac_version := "1.7"
+java_version := $(shell echo '$(java_version_str)' | grep '^java .*[ "]1\.7[\. "$$]')
+javac_version := $(shell echo '$(javac_version_str)' | grep '[ "]1\.7[\. "$$]')
 
 ifeq ($(strip $(java_version)),)
 $(info ************************************************************)
